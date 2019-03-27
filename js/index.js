@@ -85,8 +85,11 @@ var Quiz = function(){
           }
   }
 
-  this._calcResult = function(){
-    var numberOfCorrectAnswers = 0;
+  this._calcResult = function(){ //count up ranking for each category
+    var numberOfConcreteExperience = 0;
+    var numberOfReflectiveObservation = 0;
+    var numberOfAbstractConceptualization = 0;
+    var numberOfActiveExperimentation = 0;
     $('ul[data-quiz-question]').each(function(i){
       var $this = $(this),
           chosenAnswer = $this.find('.quiz-answer.active').data('quiz-answer'),
@@ -113,13 +116,16 @@ var Quiz = function(){
   }
 
   this._isComplete = function(){
+    var i;
     var answersComplete = 0;
-    $('ul[data-quiz-question]').each(function(){
-      if ( $(this).find('.quiz-answer.active').length ) {
+
+    for  (i=0; i<numbers.length; i++){
+      if(numbers[i]==4){
         answersComplete++;
       }
-    });
-    if ( answersComplete >= 6 ) {
+    }
+
+    if ( answersComplete >= 10 ) {
       return true;
     }
     else {
@@ -144,7 +150,7 @@ var Quiz = function(){
           scrollTop: $('.quiz-result').offset().top
         });
 
-        self._showResult( self._calcResult() );
+        self._showResult( self._calcResult() ); //
         $('.quiz-answer').off('click');
 
       }

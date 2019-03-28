@@ -1,4 +1,8 @@
 var numbers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var totalConcreteExperience = 0;
+var totalReflectiveObservation = 0;
+var totalAbstractConceptualization = 0;
+var totalActiveExperimentation = 0;
 var q = 0;
 var w;
 
@@ -85,35 +89,56 @@ var Quiz = function(){
           }
   }
 
-  this._calcResult = function(){ //count up ranking for each category
-    var numberOfConcreteExperience = 0;
-    var numberOfReflectiveObservation = 0;
-    var numberOfAbstractConceptualization = 0;
-    var numberOfActiveExperimentation = 0;
+  this._calcResult = function(){ //count up rankings for each category
     $('ul[data-quiz-question]').each(function(i){
       var $this = $(this),
-          chosenAnswer = $this.find('.quiz-answer.active').data('quiz-answer'),
-          correctAnswer;
+          chosenAnswer1 = $this.find('.quiz-answer.active1').data('quiz-answer'),
+          chosenAnswer2 = $this.find('.quiz-answer.active2').data('quiz-answer'),
+          chosenAnswer3 = $this.find('.quiz-answer.active3').data('quiz-answer'),
+          chosenAnswer4 = $this.find('.quiz-answer.active4').data('quiz-answer');
 
-      for ( var j = 0; j < self.correctAnswers.length; j++ ) {
-        var a = self.correctAnswers[j];
-        if ( a.question == $this.data('quiz-question') ) {
-          correctAnswer = a.answer;
-        }
+      if (chosenAnswer1.localeCompare("CE") == 0) {
+        totalConcreteExperience += 4;
+      } else if (chosenAnswer1.localeCompare("RO")==0) {
+        totalReflectiveObservation += 4;
+      } else if (chosenAnswer1.localeCompare("AC")==0) {
+        totalAbstractConceptualization += 4;
+      } else if (chosenAnswer1.localeCompare("AE")==0) {
+        totalActiveExperimentation += 4;
       }
 
-      if ( chosenAnswer == correctAnswer ) {
-        numberOfCorrectAnswers++;
+      if (chosenAnswer2.localeCompare("CE") == 0) {
+        totalConcreteExperience += 3;
+      } else if (chosenAnswer2.localeCompare("RO")==0) {
+        totalReflectiveObservation += 3;
+      } else if (chosenAnswer2.localeCompare("AC")==0) {
+        totalAbstractConceptualization += 3;
+      } else if (chosenAnswer2.localeCompare("AE")==0) {
+        totalActiveExperimentation += 3;
+      }
 
-        // highlight this as correct answer
-        $this.find('.quiz-answer.active').addClass('correct');
+      if (chosenAnswer3.localeCompare("CE") == 0) {
+        totalConcreteExperience += 2;
+      } else if (chosenAnswer3.localeCompare("RO")==0) {
+        totalReflectiveObservation += 2;
+      } else if (chosenAnswer3.localeCompare("AC")==0) {
+        totalAbstractConceptualization += 2;
+      } else if (chosenAnswer3.localeCompare("AE")==0) {
+        totalActiveExperimentation += 2;
       }
-      else {
-        $this.find('.quiz-answer[data-quiz-answer="'+correctAnswer+'"]').addClass('correct');
-        $this.find('.quiz-answer.active').addClass('incorrect');
+
+      if (chosenAnswer4.localeCompare("CE") == 0) {
+        totalConcreteExperience += 1;
+      } else if (chosenAnswer4.localeCompare("RO")==0) {
+        totalReflectiveObservation += 1;
+      } else if (chosenAnswer4.localeCompare("AC")==0) {
+        totalAbstractConceptualization += 1;
+      } else if (chosenAnswer4.localeCompare("AE")==0) {
+        totalActiveExperimentation += 1;
       }
+      return "hi";
     });
-  }
+  } //end calc result function
 
   this._isComplete = function(){
     var i;
@@ -134,7 +159,8 @@ var Quiz = function(){
   }
 
   this._showResult = function(result){
-    $('.quiz-result').addClass(result.code).html(result.text);
+    $('.quiz-result').html("Concrete Experience:" + totalConcreteExperience + ", Reflective Observation:" + totalReflectiveObservation +
+  ", Abstract Conceptualization:" + totalAbstractConceptualization + ", Active Experimentation:" + totalActiveExperimentation);
   }
 
   this._bindEvents = function(){
@@ -143,8 +169,8 @@ var Quiz = function(){
           $answers = $this.closest('ul[data-quiz-question]');
           q = $answers.data('quizQuestion');
       self._pickAnswer($this, $answers);
-      if ( self._isComplete() ) {
 
+      if ( self._isComplete() ) {
         // scroll to answer section
         $('html, body').animate({
           scrollTop: $('.quiz-result').offset().top
@@ -152,7 +178,6 @@ var Quiz = function(){
 
         self._showResult( self._calcResult() ); //
         $('.quiz-answer').off('click');
-
       }
     });
   }

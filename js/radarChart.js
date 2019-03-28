@@ -15,7 +15,7 @@ function RadarChart(id, data, options) {
 	 labelFactor: 1.25, 	//How much farther than the radius of the outer circle should the labels be placed
 	 wrapWidth: 60, 		//The number of pixels after which a label needs to be given a new line
 	 opacityArea: 0.35, 	//The opacity of the area of the blob
-	 dotRadius: 4, 			//The size of the colored circles of each blog
+	 dotRadius: 4, 			//The size of the colored circles of each blob
 	 opacityCircles: 0.1, 	//The opacity of the circles of each blob
 	 strokeWidth: 2, 		//The width of the stroke around each blob
 	 roundStrokes: false,	//If true the area and stroke will follow a round path (cardinal-closed)
@@ -79,7 +79,7 @@ function RadarChart(id, data, options) {
 
 	//Draw the background circles
 	axisGrid.selectAll(".levels")
-	   .data(d3.range(1,(cfg.levels+1)).reverse())
+	   .data(d3.range(1,(cfg.levels)).reverse())
 	   .enter()
 		.append("circle")
 		.attr("class", "gridCircle")
@@ -90,8 +90,9 @@ function RadarChart(id, data, options) {
 		.style("filter" , "url(#glow)");
 
 	//Text indicating at what % each level is
+	var textlabel = 0;
 	axisGrid.selectAll(".axisLabel")
-	   .data(d3.range(1,(cfg.levels+1)).reverse())
+	   .data(d3.range(1,(cfg.levels)).reverse())
 	   .enter().append("text")
 	   .attr("class", "axisLabel")
 	   .attr("x", 4)

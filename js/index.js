@@ -176,23 +176,12 @@ var Quiz = function(){
           {axis:"Reflective",value:totalReflectiveObservation/100.00},
           {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
           {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
-        ],[//Samsung
-          {axis:"Concrete Experience",value:totalConcreteExperience/100.00},
-          {axis:"Reflective",value:totalReflectiveObservation/100.00},
-          {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
-          {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
-          ],[//Nokia Smartphone
-            {axis:"Concrete Experience",value:totalConcreteExperience/100.00},
-            {axis:"Reflective",value:totalReflectiveObservation/100.00},
-            {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
-            {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
-          ]
-        ];
+        ]];
     //////////////////////////////////////////////////////////////
     //////////////////// Draw the Chart //////////////////////////
     //////////////////////////////////////////////////////////////
     var color = d3.scale.ordinal()
-      .range(["#EDC951","#CC333F","#00A0B0"]);
+      .range(["#00A0B0"]);
 
     var radarChartOptions = {
       w: width,

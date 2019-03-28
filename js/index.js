@@ -8,7 +8,7 @@ var w;
 
 var Quiz = function(){
   var self = this;
-
+  $(".radarChart").hide(); //initialize radarchart to hidden
   this.init = function(){
     self._bindEvents();
   }
@@ -136,7 +136,6 @@ var Quiz = function(){
       } else if (chosenAnswer4.localeCompare("AE")==0) {
         totalActiveExperimentation += 1;
       }
-      return "hi";
     });
   } //end calc result function
 
@@ -159,8 +158,53 @@ var Quiz = function(){
   }
 
   this._showResult = function(result){
-    $('.quiz-result').html("Concrete Experience:" + totalConcreteExperience + ", Reflective Observation:" + totalReflectiveObservation +
-  ", Abstract Conceptualization:" + totalAbstractConceptualization + ", Active Experimentation:" + totalActiveExperimentation);
+    $('.radarChart').show();
+
+    //////////////////////////////////////////////////////////////
+    //////////////////////// Set-Up //////////////////////////////
+    //////////////////////////////////////////////////////////////
+    var margin = {top: 100, right: 100, bottom: 100, left: 100},
+      width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+      height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+
+    //////////////////////////////////////////////////////////////
+    ////////////////////////// Data //////////////////////////////
+    //////////////////////////////////////////////////////////////
+    var data = [
+          [//iPhone
+          {axis:"Concrete Experience",value:totalConcreteExperience/100.00},
+          {axis:"Reflective",value:totalReflectiveObservation/100.00},
+          {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
+          {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
+        ],[//Samsung
+          {axis:"Concrete Experience",value:totalConcreteExperience/100.00},
+          {axis:"Reflective",value:totalReflectiveObservation/100.00},
+          {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
+          {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
+          ],[//Nokia Smartphone
+            {axis:"Concrete Experience",value:totalConcreteExperience/100.00},
+            {axis:"Reflective",value:totalReflectiveObservation/100.00},
+            {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
+            {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
+          ]
+        ];
+    //////////////////////////////////////////////////////////////
+    //////////////////// Draw the Chart //////////////////////////
+    //////////////////////////////////////////////////////////////
+    var color = d3.scale.ordinal()
+      .range(["#EDC951","#CC333F","#00A0B0"]);
+
+    var radarChartOptions = {
+      w: width,
+      h: height,
+      margin: margin,
+      maxValue: 0.5,
+      levels: 5,
+      roundStrokes: true,
+      color: color
+    };
+    //Call function to draw the Radar chart
+    RadarChart(".radarChart", data, radarChartOptions);
   }
 
   this._bindEvents = function(){
@@ -178,6 +222,8 @@ var Quiz = function(){
 
         self._showResult( self._calcResult() ); //
         $('.quiz-answer').off('click');
+      } else {
+          $(".radarChart").hide(); //hide radarchart if quiz isn't complete
       }
     });
   }

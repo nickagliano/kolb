@@ -41,18 +41,30 @@ body {
 .quiz-answer.active1:before {
   background-color: #349C17;
   border-color: #349C17;
+  text-align: center;
+  content: "1";
+  color: #fff;
 }
 .quiz-answer.active2:before {
   background-color: #DCDE15;
   border-color: #DCDE15;
+  text-align: center;
+  content: "2";
+  color: #fff;
 }
 .quiz-answer.active3:before {
   background-color: #DE8815;
   border-color: #DE8815;
+  text-align: center;
+  content: "3";
+  color: #fff;
 }
 .quiz-answer.active4:before {
   background-color: #DE1515;
   border-color: #DE1515;
+  text-align: center;
+  content: "4";
+  color: #fff;
 }
 .quiz-result {
   max-width: 960px;

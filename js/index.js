@@ -173,7 +173,7 @@ var Quiz = function(){
     var data = [
           [//iPhone
           {axis:"Concrete Experience",value:totalConcreteExperience/100.00},
-          {axis:"Reflective",value:totalReflectiveObservation/100.00},
+          {axis:"Reflective Observation",value:totalReflectiveObservation/100.00},
           {axis:"Abstract Conceptualization",value:totalAbstractConceptualization/100.00},
           {axis:"Active Experimentation",value:totalActiveExperimentation/100.00}
         ]];
@@ -194,6 +194,30 @@ var Quiz = function(){
     };
     //Call function to draw the Radar chart
     RadarChart(".radarChart", data, radarChartOptions);
+
+    //Present the quiz taker with what their data means about their learning stylesheet
+
+  /*  Concrete Experience (CE) -- A CE orientation focuses on being involved in experiences and dealing
+with immediate human situations in a personal way. It emphasizes feeling more than thinking; a
+concern with the uniqueness and complexity of present reality over theories and generalizations; and
+intuitive, "artistic" approach over a systematic, scientific approach to problems.
+
+Reflective Observation (RO) -- An RO orientation focuses on understanding the meaning of ideas
+and situations by carefully observing and describing them. It emphasizes reflection and
+understanding over action and practical application; a concern with what is true or how things happen
+over what will work.
+
+Abstract Conceptualization (AC) -- An AC orientation focuses on using logic, ideas, and concepts.
+It emphasizes thinking rather than feeling; a concern with building general theories rather than
+intuitively understanding unique, specific areas; a scientific more than an artistic approach to
+problems.
+
+Active Experimentation (AE) -- An AE orientation focuses on actively influencing people and
+changing situations. It emphasizes practical applications as distinct from reflective understanding; a
+pragmatic concern with what works rather than with what is absolute truth; an emphasis on doing,
+more than observing. */
+
+
   }
 
   this._bindEvents = function(){

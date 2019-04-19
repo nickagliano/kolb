@@ -2,6 +2,45 @@ body {
   margin: 0;
   padding: 20px;
 }
+#num4 {
+  margin: 0;
+  padding: 5px;
+  background: #f7f7f7;
+  margin-bottom: 5px;
+  background-color: #DE1515;
+  border-color: #DE1515;
+  text-align: center;
+  color: #fff;
+}
+#num3 {
+  margin: 0;
+  padding: 5px;
+  background: #;
+  margin-bottom: 5px;
+  background-color: #DE8815;
+  border-color: #DE8815;
+  text-align: center;
+  color: #fff;
+}
+#num2 {
+  margin: 0;
+  padding: 5px;
+  background: #DCDE15;
+  margin-bottom: 5px;
+  border-color: #DCDE15;
+  text-align: center;
+  color: #fff;
+}
+#num1 {
+  margin: 0;
+  padding: 5px;
+  background: #f7f7;
+  margin-bottom: 5px;
+  background-color: #349C17;
+  border-color: #349C17;
+  text-align: center;
+  color: #fff;
+}
 .quiz {
   padding: 0 30px 20px 30px;
   max-width: 960px;

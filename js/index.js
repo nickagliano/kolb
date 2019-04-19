@@ -9,6 +9,7 @@ var w;
 var Quiz = function(){
   var self = this;
   $(".radarChart").hide(); //initialize radarchart to hidden
+  $(".quiz-result").hide(); //initialize radarchart to hidden
   this.init = function(){
     self._bindEvents();
   }
@@ -160,6 +161,13 @@ var Quiz = function(){
   this._showResult = function(result){
     $('.radarChart').show();
 
+
+    $('.ROScore').html(totalReflectiveObservation);
+    $('.CEScore').html(totalConcreteExperience);
+    $('.ACScore').html(totalAbstractConceptualization);
+    $('.AEScore').html(totalActiveExperimentation);
+    $('.quiz-result').show();
+
     //////////////////////////////////////////////////////////////
     //////////////////////// Set-Up //////////////////////////////
     //////////////////////////////////////////////////////////////
@@ -228,15 +236,15 @@ more than observing. */
       self._pickAnswer($this, $answers);
 
       if ( self._isComplete() ) {
-        // scroll to answer section
-        $('html, body').animate({
-          scrollTop: $('.quiz-result').offset().top
-        });
-
-        self._showResult( self._calcResult() ); //
+        self._showResult( self._calcResult() ); // reveal results for quiz
         $('.quiz-answer').off('click');
+
+        $('html, body').animate({
+          scrollTop: $('.radarChart').offset().top
+        });
       } else {
           $(".radarChart").hide(); //hide radarchart if quiz isn't complete
+          $(".quiz-result").hide(); //hide radarchart if quiz isn't complete
       }
     });
   }
